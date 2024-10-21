@@ -15,6 +15,8 @@ jupyter:
 
 # The Solow-Swan Growth Model
 
+This notebook is a slight modification of the one found in [QuantEcon: The Solow-Swan Growth Model](https://intro.quantecon.org/solow.html).
+
 <a id='solow'></a>
 
 In this lecture we review a famous model due
@@ -139,7 +141,7 @@ def plot45(A, s, alpha, delta):
 
     xgrid = np.linspace(0, x_max, 12000)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(7, 5))
 
     ax.set_xlim(0, x_max)
 
@@ -165,6 +167,12 @@ def plot45(A, s, alpha, delta):
         fontsize=14,
         arrowprops=dict(arrowstyle="->"),
     )
+
+    # Format x-axis ticks
+    ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f"{x:.1f}"))
+
+    # Format y-axis ticks
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, p: f"{y:.1f}"))
 
     ax.legend(loc="upper left", frameon=False, fontsize=12)
 
@@ -210,7 +218,7 @@ $ k_0 $.
 This is a form of [global stability](https://intro.quantecon.org/scalar_dynam.html#scalar-dynam-global-stability).
 
 ```python
-from ipywidgets import interact, IntSlider, FloatSlider
+from ipywidgets import FloatSlider, IntSlider, interact
 
 interact(
     plot45,
@@ -252,7 +260,12 @@ def simulate_ts(x0_values, ts_length):
         for t in range(1, ts_length):
             ts[t] = g(A, s, alpha, delta, ts[t - 1])
         ax.plot(
-            np.arange(ts_length), ts, "-o", ms=4, alpha=0.6, label=r"$k_0=%g$" % x_init
+            np.arange(ts_length),
+            ts,
+            "-o",
+            ms=4,
+            alpha=0.6,
+            label=r"$k_0=%g$" % x_init,
         )
     ax.plot(
         np.arange(ts_length),
@@ -359,7 +372,7 @@ plt.show()
 One can also try to solve this mathematically by differentiating $ c^*(s) $ and solve for $ \frac{d}{ds}c^*(s)=0 $ using [sympy](https://www.sympy.org/en/index.html).
 
 ```python
-from sympy import solve, Symbol
+from sympy import Symbol, solve
 ```
 
 ```python
@@ -447,7 +460,12 @@ def ts_plot(x_values, ts_length):
         for t in range(1, ts_length):
             ts[t] = k_next(s, alpha, delta, ts[t - 1])
         ax.plot(
-            np.arange(ts_length), ts, "-o", ms=4, alpha=0.6, label=r"$k_0=%g$" % x_init
+            np.arange(ts_length),
+            ts,
+            "-o",
+            ms=4,
+            alpha=0.6,
+            label=r"$k_0=%g$" % x_init,
         )
 
     ax.legend(loc="best", fontsize=10)
