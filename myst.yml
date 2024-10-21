@@ -2,10 +2,10 @@
 version: 1
 project:
   id: 2abc07ef-3ee1-4a10-b337-f787e237bc0f
-  # title:
+  title: Modern Macro
   # description:
   # keywords: []
-  # authors: []
+  authors: Alan Lujan
   github: https://github.com/jhu-aap-econ/macro
   # To autogenerate a Table of Contents, run "myst init --write-toc"
   jupyter: true
@@ -15,6 +15,18 @@ project:
 
 site:
   template: book-theme
-  # options:
-  #   favicon: favicon.ico
-  #   logo: site_logo.png
+  options:
+    favicon: resources/H-color.png
+    logo: resources/university.shield.rgb.blue.png
+    logo_text: "JHU AAP Economics"
+    logo_dark: resources/university.shield.rgb.white.png
+  nav:
+    - title: Advanced Academic Programs
+      url: https://advanced.jhu.edu/
+    - title: Economics Graduate Programs
+      url: https://advanced.jhu.edu/academics/fields-of-study/applied-economics/
+    - title: Canvas
+      url: https://canvas.jhu.edu/
+  actions:
+    - title: "GitHub Source"
+      url: "https://github.com/jhu-aap-econ/macro"
